@@ -1,0 +1,3 @@
+[Actor]
+Type=Quad
+InitCommand=zoomto,Metrics.MusicWheel.ItemWidth,Metrics.MusicWheel.SpacingY*(Metrics.MusicWheel.NumItems-2)

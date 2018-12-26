@@ -1,0 +1,12 @@
+# Score.
+
+[Actor]
+Type=BitmapText
+#TODO: Keep it on semibold for debugging, then switch to normal on production releases.
+Font=_common semibold white
+OnCommand=%function(s) s:shadowlength(0) Actor.xy(s,PlayerX(s:getaux()),Metrics.Gameplay.ScoreY) Tweens.Gameplay.Score.On(s,s:getaux()) s:zoom(2) LuaEffect(s,"Update") end
+UpdateCommand=%function(s) local pn=s:getaux() s:settext(FormatPercentScore(CachedScore[pn]/stepsStats[pn].MaxDP)) end
+OffCommand=%function(s) s:stopeffect() Tweens.Gameplay.Score.Off(s,s:getaux()) end
+Text=asdf
+#for some reason if the text field is blank then it doesn't display
+

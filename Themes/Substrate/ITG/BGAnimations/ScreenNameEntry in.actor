@@ -1,0 +1,8 @@
+[Actor]
+File=_fade in normal
+StartTransitioningCommand=
+%function(s) DumpActor(GetScreen(),"ddr") end
+
+
+local rc=Capture.ActorFrame.GetChildren(GetScreen()).children for i,c in next,rc,nil do if IsBitmapText(c) then c:shadowlength(0) end end end
+

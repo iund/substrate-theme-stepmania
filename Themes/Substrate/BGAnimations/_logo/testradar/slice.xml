@@ -1,0 +1,4 @@
+<ActorFrame OnCommand="zoom,32" CaptureCommand="%Capture.ActorFrame.CaptureInternal"><children>
+	<Quad OnCommand="rotationz,45;vertalign,bottom;horizalign,right;diffusealpha,.25;clearzbuffer,Bool[true];zbias,1;zwrite,Bool[true]"/>
+	<Quad OnCommand="diffusealpha,.25;vertalign,top;horizalign,center;ztestmode,writeonfail"/>
+</children></ActorFrame>

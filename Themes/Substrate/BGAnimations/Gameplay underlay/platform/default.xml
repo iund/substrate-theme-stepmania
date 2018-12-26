@@ -1,0 +1,55 @@
+<ActorFrame
+	OnCommand="%function(s) Capture.ActorFrame.ApplyPNToChildren(s,s:getaux()) Actor.xy(s,PlayerX(s:getaux()),SCREEN_CENTER_Y+128) end"
+	CaptureCommand="%Capture.ActorFrame.CaptureInternal"
+><!--	FOV="112.5"
+	VanishX="(function() GetScreen():aux(GetPN(GetScreen():getaux()==0)-1) return PlayerX(2-GetScreen():getaux()) end)()"
+	VanishY="SCREEN_CENTER_Y+128"
+-->
+<children>
+	<Layer File="@&quot;../../../Graphics/_platform large/&quot;..CurGame..&quot;/pad&quot;" />
+
+	<Layer 
+		File="panel"
+		InitCommand="y,-48"
+		NoteCrossedUpMessageCommand="playcommand,Flash"
+		P1UpPressInputMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Press&quot;) end end"
+		P2UpPressInputMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Press&quot;) end end"
+		P1UpLiftInputMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Lift&quot;) end end"
+		P2UpLiftInputMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Lift&quot;) end end"
+		OnCommand="%function(s) if GlobalInput.GetInput(s:getaux(),&quot;Up&quot;) then s:playcommand(&quot;Press&quot;) end end"
+	/>
+
+	<Layer 
+		File="panel"
+		InitCommand="x,-48"
+		NoteCrossedLeftMessageCommand="playcommand,Flash"
+		P1LeftPressInputMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Press&quot;) end end"
+		P2LeftPressInputMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Press&quot;) end end"
+		P1LeftLiftInputMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Lift&quot;) end end"
+		P2LeftLiftInputMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Lift&quot;) end end"
+		OnCommand="%function(s) if GlobalInput.GetInput(s:getaux(),&quot;Left&quot;) then s:playcommand(&quot;Press&quot;) end end"
+	/>
+
+	<Layer 
+		File="panel"
+		InitCommand="x,48"
+		NoteCrossedRightMessageCommand="playcommand,Flash"
+		P1RightPressInputMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Press&quot;) end end"
+		P2RightPressInputMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Press&quot;) end end"
+		P1RightLiftInputMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Lift&quot;) end end"
+		P2RightLiftInputMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Lift&quot;) end end"
+		OnCommand="%function(s) if GlobalInput.GetInput(s:getaux(),&quot;Right&quot;) then s:playcommand(&quot;Press&quot;) end end"
+	/>
+
+	<Layer 
+		File="panel"
+		InitCommand="y,48"
+		NoteCrossedDownMessageCommand="playcommand,Flash"
+		P1DownPressInputMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Press&quot;) end end"
+		P2DownPressInputMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Press&quot;) end end"
+		P1DownLiftInputMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Lift&quot;) end end"
+		P2DownLiftInputMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Lift&quot;) end end"
+		OnCommand="%function(s) if GlobalInput.GetInput(s:getaux(),&quot;Down&quot;) then s:playcommand(&quot;Press&quot;) end end"
+	/>
+
+</children></ActorFrame>

@@ -1,0 +1,65 @@
+<ActorFrame OnCommand="%function(s)
+-- three bars for blue, gold, and green fullcombo
+-- TODO: fix green bar
+
+		local pn=s:getaux()
+
+		--setup
+		local r=Capture.ActorFrame.GetChildren(s).children
+
+		local firstnotetime=GetEnv(&quot;SongStartTime&quot;)
+		local lastnotetime=GetEnv(&quot;SongEndTime&quot;)
+		local percentcompleted=GetEnv(&quot;SongPercentComplete&quot;)
+		local songlength=(lastnotetime-firstnotetime)/math.max(0.001,percentcompleted)
+
+		--get data
+		local gd=CurGhostData[pn] or {}
+		local firstj={}
+		if gd then for i,step in next,gd,nil do	-- from ghost.lua: local step={ timestamp, n, dbs[pn] }
+			local j=math.min(step[2],4)
+			--BUG: For whatever reason the green part (for greats) isn`t showing
+			if j<=6 and not firstj[j] then firstj[j]=step[1] end
+		end end
+
+		--graph objects:
+		for j,q in next,r,nil do
+			----sprite cropping: (remember crop takes a subtractive %age arg; crop 0 means don`t crop)
+
+			--q:visible(Bool[not not firstj[j]])
+
+			q:cropleft(((firstj[j] or firstnotetime)-firstnotetime)/songlength)
+			q:cropright(1-(((firstj[j+1] or firstj[4] or lastnotetime)-firstnotetime)/songlength))
+
+			--color it in
+			q:diffusecolor(unpack(JudgeColours[j]))
+
+			--stick it at the top:
+			--q:fadebottom(0.5)
+			--q:cropbottom(0.5)
+			--q:fadebottom(0.25)
+			--q:cropbottom(0.75)
+			q:fadetop(.25)
+			q:croptop(.75)
+			
+			--apply mask
+			q:ztestmode('writeonfail')
+		end
+
+		--lastly: tween in:
+
+		Actor.xy(s,Metrics.Evaluation.LifeGraphX[pn],Metrics.Evaluation.LifeGraphY)
+		Sweep.In(s,pn)
+
+	end"
+	OffCommand="%function(s) Sweep.Out(s,s:getaux()) end"
+	CaptureCommand="%Capture.ActorFrame.CaptureInternal"><children>
+
+	<Sprite Texture="@GetPathG(&quot;Evaluation ComboGraph max&quot,true)"/>
+	<Sprite Texture="@GetPathG(&quot;Evaluation ComboGraph max&quot,true)"/>
+	<Sprite Texture="@GetPathG(&quot;Evaluation ComboGraph max&quot,true)"/>
+<!--
+	<Sprite Texture="../../../../Graphics/Evaluation ComboGraph max"/>
+	<Sprite Texture="../../../../Graphics/Evaluation ComboGraph max"/>
+	<Sprite Texture="../../../../Graphics/Evaluation ComboGraph max"/>
+-->
+</children></ActorFrame>

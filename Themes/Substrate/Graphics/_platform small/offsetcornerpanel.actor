@@ -1,0 +1,6 @@
+[Actor]
+File=@CurGame.."/cornerhighlight"
+PanelsHideCommand=stoptweening;decelerate,0.3;diffusealpha,0
+PanelsHideDelayedCommand=stoptweening;sleep,0.3;decelerate,0.3;diffusealpha,0
+PanelsShowCommand=stoptweening;accelerate,0.3;diffusealpha,1
+PanelsShowDelayedCommand=stoptweening;sleep,0.3;accelerate,0.3;diffusealpha,1

@@ -1,0 +1,74 @@
+<ActorFrame
+	OnCommand="%function(s)
+		Actor.xy(s,SCREEN_CENTER_X-160,SCREEN_TOP+32)
+		for i,c in next,Capture.ActorFrame.GetChildren(s).children,nil do c:y(math.floor((i-1)/2)*20) end
+
+		GetScreen():aux(s:GetNumChildren())
+		s:luaeffect(&quot;Update&quot;)
+	end"
+	CaptureCommand="%Capture.ActorFrame.CaptureInternal"
+><children>
+	<BitmapText Condition="GetProductName and true" Font="_common white" Text="Build:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetProductName and true" Font="_common white" Text="@GetProductName()" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetRevision and true" Font="_common white" Text="Revision:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetRevision and true" Font="_common white" Text="@&quot;r&quot;..GetRevision()" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetSerialNumber and true" Font="_common white" Text="Serial Number:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetSerialNumber and true" Font="_common white" Text="@GetSerialNumber()" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="Lua Build:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@sprintf(&quot;%s (%d-bit)&quot;,_VERSION,2^1023==inf and 32 or 64)" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="Uptime:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" UpdateCommand="%function(self) self:settext(GetUptime and GetUptime() or SecondsToMSS(GlobalClock:GetSecsIntoEffect())) end" />
+	<!--
+	<BitmapText Condition="IsNetConnected and true" Font="_common white" Text="Network Status:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="IsNetConnected and true" Font="_common white" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" UpdateCommand="%function(self) self:settext(IsNetConnected() and &quot;Connected to &quot;..GetPref(&quot;LastConnectedServer&quot;)..(IsNetSMOnline() and &quot; (SMOnline)&quot; or &quot;&quot;) or &quot;Offline&quot;) end" />
+	-->
+	<BitmapText Condition="HubIsConnected and true" Font="_common white" Text="USB Hub:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="HubIsConnected and true" Font="_common white" Text="@not GetPref(&quot;MemoryCards&quot;) and &quot;Disabled&quot; or HubIsConnected() and &quot;Present&quot; or &quot;Not present&quot;" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetNumCrashLogs and true" Font="_common white" Text="Crash Logs:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetNumCrashLogs and true" Font="_common white" Text="@GetNumCrashLogs() .. ' files'" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetNumIOErrors and true" Font="_common white" Text="I/O Errors:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetNumIOErrors and true" Font="_common white" Text="" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0;luaeffect,Update" UpdateCommand="%function(self) self:settext(GetNumIOErrors()) end" />
+	<BitmapText Font="_common white" Text="Song Play Count:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@PROFILEMAN:GetMachineProfile():GetTotalNumSongsPlayed()" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetNumMachineScores and true" Font="_common white" Text="Machine Scores:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetNumMachineScores and true" Font="_common white" Text="@GetNumMachineScores()" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetNumMachineEdits and true" Font="_common white" Text="Machine Edits:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetNumMachineEdits and true" Font="_common white" Text="@GetNumMachineEdits()..&quot; files&quot;" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetDiskSpaceFree and GetDiskSpaceTotal and true" Font="_common white" Text="Disk Status:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetDiskSpaceFree and GetDiskSpaceTotal and true" Font="_common white" Text="@sprintf(&quot;%s free / %s total&quot;, GetDiskSpaceFree(), GetDiskSpaceTotal())" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetIP and true" Font="_common white" Text="IP Address:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetIP and true" Font="_common white" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" UpdateCommand="%function(self) self:settext(GetIP()) end" />
+	<BitmapText Font="_common white" Text="Input Drivers:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" UpdateCommand="%function(self) self:settext(GetInputType and GetInputType()~=&quot;&quot; and GetInputType() or join(&quot;, &quot;,INPUTMAN:GetDescriptions())) end" />
+	<BitmapText Condition="not IsArcade()" Font="_common white" Text="Video Device:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="not IsArcade()" Font="_common white" Text="@GetPref(&quot;LastSeenVideoDriver&quot;)" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="not IsArcade()" Font="_common white" Text="Screen Resolution:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="not IsArcade()" Font="_common white" Text="@sprintf(&quot;%dx%d&quot;,GetPref(&quot;DisplayWidth&quot;),GetPref(&quot;DisplayHeight&quot;))" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="not IsArcade()" Font="_common white" Text="Render API:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="not IsArcade()" Font="_common white" Text="@GetPref(&quot;VideoRenderers&quot;)" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetPref(&quot;LastSeenMemory&quot;) and true" Font="_common white" Text="System Memory:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Condition="GetPref(&quot;LastSeenMemory&quot;) and true" Font="_common white" Text="@sprintf(&quot;%1.1f GB&quot;,tonumber(GetPref(&quot;LastSeenMemory&quot;)/1000))" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+
+<!--
+	<BitmapText Font="_common white" Text="GetCaloriesBurnedToday:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@PROFILEMAN:GetMachineProfile():GetCaloriesBurnedToday()" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="GetSongsActual:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@PROFILEMAN:GetMachineProfile():GetSongsActual(STEPS_TYPE_DANCE_SINGLE,DIFFICULTY_CHALLENGE)" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="GetSongsPossible:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@PROFILEMAN:GetMachineProfile():GetSongsPossible(STEPS_TYPE_DANCE_SINGLE,DIFFICULTY_CHALLENGE)" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="GetSongsPercentComplete:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@PROFILEMAN:GetMachineProfile():GetSongsPercentComplete(STEPS_TYPE_DANCE_SINGLE,DIFFICULTY_CHALLENGE)" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="GetTotalStepsWithTopGrade:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@PROFILEMAN:GetMachineProfile():GetTotalStepsWithTopGrade(STEPS_TYPE_DANCE_SINGLE,DIFFICULTY_CHALLENGE,GRADE_TIER02)" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="MachineName:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@GetPref(&quot;MachineName&quot;)" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="GetWeightPounds:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@PROFILEMAN:GetMachineProfile():GetWeightPounds()" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="GetGoalType:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@PROFILEMAN:GetMachineProfile():GetGoalType()" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="GetGoalCalories:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@PROFILEMAN:GetMachineProfile():GetGoalCalories()" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="GetGoalSeconds:" OnCommand="horizalign,right;zoom,0.75;shadowlength,0" />
+	<BitmapText Font="_common white" Text="@PROFILEMAN:GetMachineProfile():GetGoalSeconds()" OnCommand="x,10;horizalign,left;zoom,0.75;shadowlength,0" />
+-->
+</children></ActorFrame>

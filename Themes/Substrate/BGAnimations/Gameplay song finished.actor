@@ -1,0 +1,7 @@
+# Wait until the music has finished playing then go to the next screen
+[Actor]
+Type=ActorFrame
+StartTransitioningCommand=%function(s) Broadcast("SongFinished") SOUND:DimMusic(0,1) SetEnv("SongEndTime",GetScreen():GetSecsIntoEffect()) if not IsCourseMode() then s:playcommand("WaitSongFinished") end end
+FinishTransitioningCommand=%function(s) SOUND:StopMusic() end
+WaitSongFinishedCommand=hibernate,math.max(0,((Song.MusicLengthSeconds and CurSong():MusicLengthSeconds() or GetEnv("SongSeconds") or 0)/Env().SongMods.Rate)-GetScreen():GetSecsIntoEffect())
+

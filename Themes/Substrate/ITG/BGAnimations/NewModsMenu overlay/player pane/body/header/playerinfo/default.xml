@@ -1,0 +1,24 @@
+<ActorFrame>
+<!--	CurrentStepsP1ChangedMessageCommand="%function(s) if s:getaux()==1 then
+	CurrentTrailP1ChangedMessageCommand="%function(s) if s:getaux()==2 then
+	CurrentStepsP2ChangedMessageCommand="%function(s) if s:getaux()==1 then
+	CurrentTrailP2ChangedMessageCommand="%function(s) if s:getaux()==2 then
+--><children>
+	<Layer Type="BitmapText" Font="_common white" OnCommand="%function(s) if GetEnv(&quot;ProfileLoaded&quot;) then s:settext(PlayerName(s:getaux())) end end"/>
+	<Layer Type="BitmapText" Font="_common white" OnCommand="playcommand,Change"
+		ChangeCommand="%function(s) if GetEnv(&quot;ProfileLoaded&quot;) then s:settext(CurSteps(s:getaux()) and CurSteps(s:getaux()):GetDescription() or &quot;&quot;) end end"
+		CurrentStepsP1ChangedMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Change&quot;) end end"
+		CurrentStepsP2ChangedMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Change&quot;) end end"
+		CurrentTrailP1ChangedMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Change&quot;) end end"
+		CurrentTrailP2ChangedMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Change&quot;) end end"
+	/>
+	<Layer Type="BitmapText" Font="_common white" OnCommand="%function(s) if GetEnv(&quot;ProfileLoaded&quot;) then s:settext('hello' or PlayerMods(s:getaux())) end end" />
+	<Layer Type="Quad"/> <!-- Layer File="meter frame" / -->
+	<Layer Type="DifficultyMeter" OnCommand="zoom,2;shadowlength,0;playcommand,Change"
+		ChangeCommand="%function(s) if GetEnv(&quot;ProfileLoaded&quot;) then if IsCourseMode() and CurCourse(s:getaux()) then s:SetFromTrail(CurTrail(s:getaux())) else s:SetFromSteps(CurSteps(s:getaux())) end end end"
+		CurrentStepsP1ChangedMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Change&quot;) end end"
+		CurrentStepsP2ChangedMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Change&quot;) end end"
+		CurrentTrailP1ChangedMessageCommand="%function(s) if s:getaux()==1 then s:playcommand(&quot;Change&quot;) end end"
+		CurrentTrailP2ChangedMessageCommand="%function(s) if s:getaux()==2 then s:playcommand(&quot;Change&quot;) end end"
+	/>
+</children></ActorFrame>

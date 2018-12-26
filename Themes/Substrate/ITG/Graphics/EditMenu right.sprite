@@ -1,0 +1,3 @@
+[Sprite]
+File=_arrow right
+InitCommand=%function(s) Screens.EditMenu.Init() end

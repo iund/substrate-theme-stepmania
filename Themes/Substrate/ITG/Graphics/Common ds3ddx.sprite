@@ -1,0 +1,3 @@
+[Sprite]
+File=_blank
+InitCommand=%function(s) CurGame="ds3ddx" end

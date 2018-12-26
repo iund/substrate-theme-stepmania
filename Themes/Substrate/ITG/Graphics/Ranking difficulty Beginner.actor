@@ -1,0 +1,4 @@
+[Actor]
+Type=BitmapText
+Font=_ranking difficulty heading
+Text=@DifficultyToThemedString(DIFFICULTY_BEGINNER)

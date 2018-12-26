@@ -1,0 +1,5 @@
+# Gets drawn from 1st beat
+[Actor]
+Type=ActorFrame
+InitCommand=visible,Bool[false];queuecommand,Go
+GoCommand=%function(s) Broadcast("Go") end

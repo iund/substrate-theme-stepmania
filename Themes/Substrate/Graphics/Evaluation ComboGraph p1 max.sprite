@@ -1,0 +1,3 @@
+[Sprite]
+Texture=Evaluation ComboGraph max
+InitCommand=%Tweens.Evaluation.ComboGraph.MaxPartOn

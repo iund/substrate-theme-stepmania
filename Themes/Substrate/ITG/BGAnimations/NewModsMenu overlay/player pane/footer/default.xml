@@ -1,0 +1,5 @@
+<ActorFrame><children>
+	<Layer File="bg"/>
+	<Layer File="prompt"/>
+	<Layer File="navhelp"/>
+</children></ActorFrame>

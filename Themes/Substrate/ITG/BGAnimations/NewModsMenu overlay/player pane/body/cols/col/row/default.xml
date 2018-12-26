@@ -1,0 +1,15 @@
+<ActorFrame><children>
+	<Layer
+		Type="BitmapText"
+		Font="_common white"
+	/>
+	<Layer
+		Type="BitmapText"
+		Font="_common semibold white"
+	/>
+</children></ActorFrame>
+
+<!--
+#[Layer2]
+# Highlight TODO
+-->

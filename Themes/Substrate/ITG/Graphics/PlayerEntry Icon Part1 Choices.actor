@@ -1,0 +1,7 @@
+[Actor]
+File=_blank
+InitCommand=%function(s) s:visible(Bool[false]) local i=GetScreen():getaux() s:aux(i) GetScreen():aux(i+1) end
+GainFocusCommand=%function(s) SetEnv("StyleChoice",s:getaux()) Broadcast("MoveChoice") end
+LoseFocusCommand=
+EnabledCommand=
+DisabledCommand=

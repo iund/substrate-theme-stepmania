@@ -1,0 +1,7 @@
+<!-- middle, left, right -->
+
+<ActorFrame><children>
+	<Sprite Texture="../Options cursor" Command="animate,Bool[false];setstate,1"/>
+	<Sprite Texture="../Options cursor" Command="animate,Bool[false];setstate,0"/>
+	<Sprite Texture="../Options cursor" Command="animate,Bool[false];setstate,2"/>
+</children></ActorFrame>

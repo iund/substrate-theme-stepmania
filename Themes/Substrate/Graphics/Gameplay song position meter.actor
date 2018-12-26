@@ -1,0 +1,3 @@
+[Actor]
+Type=Quad
+InitCommand=zoomtoheight,Metrics.Gameplay.SongProgressHeight;vertalign,bottom;diffusecolor,unpack(UIColor("ProgressFill"))

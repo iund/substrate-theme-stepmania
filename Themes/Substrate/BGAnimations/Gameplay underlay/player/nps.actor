@@ -1,0 +1,23 @@
+# (WIP) NPS Counter
+
+[Actor]
+Type=BitmapText
+Font=_common semibold white
+#OnCommand=%function(s) Actor.xy(s,PlayerX(s:getaux())+Metrics.Gameplay.GhostXOffset,Metrics.Gameplay.GhostY) Tweens.Gameplay.GhostDisplay.On(s,s:getaux()) Ghost.InitText(s,s:getaux()) end
+
+Text=asdasd
+OnCommand=%function(s) Actor.xy(s,PlayerX(s:getaux())+Metrics.Gameplay.GhostXOffset,Metrics.Gameplay.GhostY+16) s:luaeffect("Update") end
+
+UpdateCommand=%function(s)  local curNPS,prevNPS,m3=s:geteffectmagnitude() s:settext(sprintf("%1.1f",prevNPS)) if s:GetEffectDelta()<0 then s:playcommand("Wrap") end end
+
+local curNPS,prevNPS,m3=s:geteffectmagnitude()
+s:settext(sprintf("%1.1f",prevNPS))
+if s:GetEffectDelta()<0 then s:playcommand("Wrap") end
+end
+
+WrapCommand=%function(s) local m1,m2,m3=s:geteffectmagnitude() s:effectmagnitude(0,m1,m3) end
+# incr m1
+StepCommand=%function(s) local m1,m2,m3=s:geteffectmagnitude() s:effectmagnitude(m1+1,m2,m3) end
+
+StepP1MessageCommand=%function(s) if s:getaux()==1 then s:playcommand("Step") end end
+StepP2MessageCommand=%function(s) if s:getaux()==2 then s:playcommand("Step") end end

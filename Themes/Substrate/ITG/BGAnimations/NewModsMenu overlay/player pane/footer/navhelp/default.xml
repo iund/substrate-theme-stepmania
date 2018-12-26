@@ -1,0 +1,25 @@
+<!-- Button graphics + help text for each button -->
+
+<ActorFrame><children>
+	<Layer Type="BitmapText" Font="_common white" Text="navhelp placeholder" />
+</children></ActorFrame>
+
+<!--TODO:
+
+# Up
+
+# Up text
+
+# Down
+
+# Down Text
+
+# Left
+
+# Left text
+
+# Right
+
+# Right text
+
+-->

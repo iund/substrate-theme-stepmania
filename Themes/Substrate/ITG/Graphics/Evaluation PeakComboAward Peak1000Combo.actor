@@ -1,0 +1,4 @@
+[Actor]
+Type=BitmapText
+Font=_award
+Text=@Languages[CurLanguage()].Evaluation.Award.Timing.Peak1000Combo

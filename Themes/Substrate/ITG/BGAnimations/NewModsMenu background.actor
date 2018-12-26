@@ -1,0 +1,8 @@
+[Actor]
+File=songbackground
+Type=Sprite
+OnCommand=stretchtoscreen;playcommand,Start
+CurrentSongChangedMessageCommand=%function(s) s:LoadBackground( CurSong():GetBackgroundPath() or GetPathG("Common fallback banner",true) ) s:stretchtoscreen() s:finishtweening() end
+NextCourseSongMessageCommand=%function(s) s:LoadBackground( GAMESTATE:Env().NextSong:GetBackgroundPath() or GetPathG("Common fallback background",true) ) s:stretchtoscreen() end
+StartCommand=sleep,0.3;linear,0.3;diffusealpha,1
+FinishCommand=%function(s) s:sleep(0.3) s:linear(0.3) s:diffusealpha(0) Broadcast("NextCourseSongLoaded") end

@@ -1,0 +1,4 @@
+[Actor]
+Text=Steps
+Type=BitmapText
+Font=PaneDisplay labels

@@ -1,0 +1,4 @@
+[Sprite]
+Texture=../../Graphics/Options dq sprite
+# For whatever reason, this never appears on 3.95 stock
+InitCommand=diffusealpha,OPENITG and 0 or 1

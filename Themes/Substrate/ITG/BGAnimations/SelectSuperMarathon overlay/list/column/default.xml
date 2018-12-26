@@ -1,0 +1,16 @@
+<ActorFrame><children>
+	<Layer Type="Sprite" File="pane" OnCommand="diffusealpha,.5"/>
+	<Layer
+		Type="BitmapText"
+		Font="_common semibold white"
+		OnCommand="%function(s) Actor.xy(s,unpack(Metrics.SelectSuperMarathon.Column.FolderXY)) s:shadowlength(0) end"/>
+	<Layer
+		Type="BitmapText"
+		Font="_common semibold white"
+		OnCommand="%function(s) Actor.xy(s,unpack(Metrics.SelectSuperMarathon.Column.LengthXY)) s:shadowlength(0) end"/>
+	<Layer
+		Type="BitmapText"
+		Font="_common semibold white"
+		OnCommand="%function(s) Actor.xy(s,unpack(Metrics.SelectSuperMarathon.Column.NumSongsXY)) s:shadowlength(0) end"/>
+	<Layer File="songlist"/>
+</children></ActorFrame>

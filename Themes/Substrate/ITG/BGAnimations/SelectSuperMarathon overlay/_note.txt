@@ -1,0 +1,1 @@
+xml layouts are used instead of bga.ini here, due to "c stack overflow"

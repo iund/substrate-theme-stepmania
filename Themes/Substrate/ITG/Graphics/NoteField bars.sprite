@@ -1,0 +1,3 @@
+[Sprite]
+Texture=_NoteField bars 1x4
+InitCommand=%NoteField.Init

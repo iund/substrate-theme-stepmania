@@ -1,0 +1,4 @@
+# Gameplay waits for Ready to be done before the song starts. Don't add a delay here.
+[Actor]
+Type=ActorFrame
+InitCommand=visible,Bool[false]

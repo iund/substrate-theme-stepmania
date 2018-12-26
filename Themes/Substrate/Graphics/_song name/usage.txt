@@ -1,0 +1,2 @@
+set aux to whatever you want the max width to be, in InitCommand
+eg, InitCommand=aux,320 

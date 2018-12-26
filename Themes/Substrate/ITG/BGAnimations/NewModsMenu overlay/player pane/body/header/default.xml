@@ -1,0 +1,4 @@
+<ActorFrame><children>
+	<Layer File="breadcrumb"/>
+	<Layer File="playerinfo"/>
+</children></ActorFrame>

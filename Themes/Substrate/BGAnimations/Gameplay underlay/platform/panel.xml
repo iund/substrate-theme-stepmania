@@ -1,0 +1,15 @@
+<ActorFrame><children>
+	<Layer
+		File="@&quot;../../../Graphics/_platform large/&quot;..CurGame..&quot;/highlight&quot;"
+		InitCommand="diffusealpha,0;additiveblend,1"
+		FlashCommand="finishtweening;diffusealpha,1;accelerate,0.5;diffusealpha,0"
+	/>
+
+	<Layer
+		File="@CurGame..&quot;/outline&quot;"
+		InitCommand="diffusealpha,0;additiveblend,1;visible,Bool[not IsDemonstration()]"
+		PressCommand="diffusealpha,1"
+		LiftCommand="diffusealpha,0"
+	/>
+</children></ActorFrame>
+

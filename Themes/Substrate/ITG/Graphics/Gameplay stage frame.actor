@@ -1,0 +1,4 @@
+[Actor]
+Type=ActorFrame
+# reset GetScreen's aux left over from lifebar initialisation:
+InitCommand=%function(s) GetScreen():aux(0) end

@@ -1,0 +1,29 @@
+<!--Replicate the old Stepmania 3.9 song info -->
+<BitmapText
+Font="SongCreditDisplay text"
+InitCommand="playcommand,SetText"
+CurrentSongChangedMessageCommand="playcommand,SetText"
+SetTextCommand="%function(s)
+	local si={}
+	ForeachPlayer(function(pn)
+		if not si[1] or si[1]~=CurSteps(pn) then table.insert(si,CurSteps(pn)) end
+	end)
+	table.sort(si,function(a,b) return dText[a:GetDifficulty()]<dText[b:GetDifficulty()] end)
+	
+	local stepinfo={}
+	for i,s in next,si,nil do
+		stepinfo[i]=sprintf(
+			&quot;%s steps: %s&quot;,
+			DifficultyToString(s:GetDifficulty()),
+			s:GetDescription()
+		)
+	end
+	s:settext(
+		sprintf(
+			&quot;%s\n%s\n%s&quot;,
+			CurSong():GetDisplayFullTitle(),
+			CurSong():GetDisplayArtist(),
+			join(&quot;\n&quot;,stepinfo)
+		)
+	)
+end"/>

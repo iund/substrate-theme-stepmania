@@ -1,0 +1,3 @@
+[Sprite]
+File=_blank
+InitCommand=%function(s) CurGame="ez2" end

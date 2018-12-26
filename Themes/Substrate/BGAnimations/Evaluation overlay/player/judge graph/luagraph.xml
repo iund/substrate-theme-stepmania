@@ -1,0 +1,32 @@
+<!-- Graph (quad stack) to allow you to make your own graphs -->
+
+<ActorFrame><children>
+
+<!-- 200 quads -->
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<!--
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+<Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/><Quad/>
+-->
+
+
+</children></ActorFrame>

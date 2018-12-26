@@ -1,0 +1,28 @@
+<!-- Reuse the old 3.9 metrics to configure this. However.. StreamWidth and StreamPath are read directly; Lua can't be applied there -->
+<SongMeterDisplay
+	StreamWidth="640"
+	StreamPath="../Gameplay song position meter"
+	OnCommand="%function(s)
+		s:x(loadstring(&quot;return &quot;..THEME:GetMetric(&quot;Gameplay&quot;,&quot;SongPositionMeterX&quot;))())
+		s:y(loadstring(&quot;return &quot;..THEME:GetMetric(&quot;Gameplay&quot;,&quot;SongPositionMeterY&quot;))())
+		s:playcommand(&quot;Metric&quot;)
+		s:basezoomx(Metrics.Gameplay.SongProgressWidth/640)
+		--s:basezoomx(loadstring(&quot;return &quot;..THEME:GetMetric(&quot;Gameplay&quot;,&quot;SongPositionMeterWidth&quot;))()/640)
+
+		SetEnv(&quot;SongEndTime&quot;,0)
+	end"
+	MetricCommand="@THEME:GetMetric(&quot;Gameplay&quot;,&quot;SongPositionMeterOnCommand&quot;)"
+	OffCommand="@THEME:GetMetric(&quot;Gameplay&quot;,&quot;SongPositionMeterOffCommand&quot;)"
+><Tip
+	File="../Gameplay song position tip"
+	InitCommand="effectclock,music;luaeffect,Update"
+	UpdateCommand="%function(s) if s:GetX()&lt;=-320 then s:aux(s:GetSecsIntoEffect()) else s:visible(Bool[false]) s:stopeffect() end end"
+	SongFinishedMessageCommand="%function(s) if (GetEnv(&quot;SongEndTime&quot;) or 0)==0 then SetEnv(&quot;SongEndTime&quot;,s:GetSecsIntoEffect()) end end"
+	OffCommand="%function(s) if not IsDemonstration() then
+		SetEnv(&quot;SongStartTime&quot;,s:getaux())
+		SetEnv(&quot;SongPercentComplete&quot;,(s:GetX()+320)/640)
+		if (GetEnv(&quot;SongEndTime&quot;) or 0)==0 then
+			SetEnv(&quot;SongEndTime&quot;,s:GetSecsIntoEffect())
+		end
+	end end"
+/></SongMeterDisplay>

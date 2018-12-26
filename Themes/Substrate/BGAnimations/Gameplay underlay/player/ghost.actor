@@ -1,0 +1,6 @@
+[Actor]
+Type=BitmapText
+Font=_common semibold white
+OnCommand=%function(s) Actor.xy(s,PlayerX(s:getaux())+Metrics.Gameplay.GhostXOffset,Metrics.Gameplay.GhostY) Tweens.Gameplay.GhostDisplay.On(s,s:getaux()) Ghost.InitText(s,s:getaux()) end
+OffCommand=%function(s) Tweens.Gameplay.GhostDisplay.Off(s,s:getaux()) end
+

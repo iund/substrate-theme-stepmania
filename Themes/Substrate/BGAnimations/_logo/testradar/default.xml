@@ -1,0 +1,86 @@
+<ActorFrame
+	OnCommand="%function(s)
+
+		s:zoom(5)
+
+		Capture.ActorFrame.ApplyPNToChildren(s,3)
+
+		local r=Capture.ActorFrame.GetChildren(s)
+		local children=r.children
+	
+		local sides=table.getn(children)
+		local angle=360/sides
+	
+		for i,c in next,children,nil do
+			c.self:rotationz(angle*i)
+			c.children[1]:zoomx(math.dtan(angle))
+			c.children[2]:zoomx(math.dtan(angle)*MATH_ROOT2)
+			c.children[2]:basezoomy(MATH_ROOT2/2)
+			c.children[2]:y(-MATH_ROOT2/2)
+		end
+		
+--[[
+		vert1=children[1].children[2]
+		vert2=children[2].children[2]
+
+		s:luaeffect(&quot;Update&quot;)
+--]]
+	end"
+	UpdateCommand="%function(s)
+		local time=s:GetSecsIntoEffect()
+
+		--move a vertex?
+		
+--		local vert1=children[1].children[2]
+--		local vert2=children[2].children[2]
+		
+		local sides=5
+
+		local angle=360/sides
+		
+		local scale=-MATH_ROOT2/2
+		
+		local v1=time
+		local v2=1
+		
+		local a1=v2-v1
+
+		local w1=1+MATH_ROOT2*math.abs(a1)
+		
+		--local y1=scale*((v1+v2)/2)
+		local y1=scale*math.dsin(90*(v1+v2))
+		local y1=scale*math.adtan(45*a1)
+		
+		--local x1=math.dtan(angle*math.abs(a1))
+
+		local x1=math.dsin(a1*90)/2
+
+		local r1=-a1*(360/5)
+		
+		-- [[
+
+		vert1:x(x1)
+		vert1:y(y1) --(1-math.abs(a1))*(scale/2))
+		vert1:rotationz(r1)
+	
+		--]]
+		
+--[[
+		
+		Actor.xy(vert1,math.dsin(45),(-MATH_ROOT2/2)*.5)
+		vert1:rotationz(-45)
+--]]
+		
+	end"
+	CaptureCommand="%Capture.ActorFrame.CaptureInternal"
+><children>
+
+	<Layer File="slice" InitCommand="aux,0"/>
+	<Layer File="slice" InitCommand="aux,1"/>
+	<Layer File="slice" InitCommand="aux,2"/>
+	<Layer File="slice" InitCommand="aux,3"/>
+	<Layer File="slice" InitCommand="aux,4"/>
+<!--
+	<Layer File="slice" InitCommand="aux,5"/>
+-->
+</children></ActorFrame>

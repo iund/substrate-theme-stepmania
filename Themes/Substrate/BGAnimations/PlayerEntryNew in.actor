@@ -1,0 +1,3 @@
+[Actor]
+File=_fade in normal
+StartTransitioningCommand=%function(s) if GAMESTATE:GetNumSidesJoined()==2 then s:finishtweening() end end

@@ -1,0 +1,5 @@
+[Actor]
+Text=
+Type=BitmapText
+Font=PaneDisplay labels
+//player name

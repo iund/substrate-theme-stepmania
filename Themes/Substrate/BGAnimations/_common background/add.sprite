@@ -1,0 +1,4 @@
+[Sprite]
+Texture=texture
+OnCommand=blend,add;aux,0)local w,h,i=self:GetWidth()*self:GetZoomX()/2,self:GetHeight()*self:GetZoomY()/2,GetScreen():getaux()-1 local cv=math.mod(math.floor(i/4),3) local cf=function(c) return cv==c and .1 or .05 end GetScreen():aux(i;x,randomrange(-w,SCREEN_WIDTH+w);y,randomrange(-h,SCREEN_HEIGHT+h);diffuse,cf(0),cf(1),cf(2),1;rotationz,90*math.mod(i,4)
+CoinInsertedMessageCommand=finishtweening,)local z=self:GetZoom(;zoom,z*1.75;decelerate,.45;zoom,z

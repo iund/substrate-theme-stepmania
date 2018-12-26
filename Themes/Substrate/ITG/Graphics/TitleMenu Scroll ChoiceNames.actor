@@ -1,0 +1,15 @@
+[Actor]
+Type=BitmapText
+Font=_common semibold white
+FormatCommand=HorizAlign,center;ShadowLength,0;effectclock,beat
+
+EnabledCommand=
+DisabledCommand=diffuse,0.5,0.5,0.5,1
+
+# get names
+InitCommand=%function(s) s:playcommand("Format") local i=GetScreen():getaux() s:aux(i) GetScreen():aux(i+1) end
+OnCommand=%function(s) local title=TitleMenuEntries()[s:getaux()].Title s:settext(Languages[CurLanguage()].ScreenTitleMenu[title] or title) end
+
+GainFocusCommand=stoptweening;diffusecolor,1,.5,.5,1;linear,0.15;zoom,1.1;luaeffect,Effect
+EffectCommand=diffusealpha,(math.adcos(360*self:GetSecsIntoEffect())/2)+0.5
+LoseFocusCommand=stoptweening;diffusecolor,.85,.85,.85,1;linear,0.15;zoom,1;stopeffect

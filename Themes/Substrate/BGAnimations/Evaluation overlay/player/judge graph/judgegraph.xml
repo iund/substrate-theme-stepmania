@@ -1,0 +1,72 @@
+<ActorFrame OnCommand="%function(s)
+		local sliceheight=12
+		local slicewidth=2
+		
+		local pn=s:getaux()
+
+		--setup
+		local r=Capture.ActorFrame.GetChildren(s).children
+		
+		local firstnotetime=GetEnv(&quot;SongStartTime&quot;)
+		local lastnotetime=GetEnv(&quot;SongEndTime&quot;)
+		local percentcompleted=GetEnv(&quot;SongPercentComplete&quot;)
+		local songlength=lastnotetime/math.max(0.001,percentcompleted)
+		
+		--graph setup
+		local numgraphcols=table.getn(r[1].children) --take the 1st graph, the others will be the same xml anyway
+		local pixscale=(numgraphcols/(lastnotetime-firstnotetime))*percentcompleted
+
+		Trace(&quot;firstnotetime: &quot;,tostring(firstnotetime))
+		Trace(&quot;lastnotetime: &quot;,tostring(lastnotetime))
+		Trace(&quot;percentcompleted: &quot;,tostring(percentcompleted))
+		Trace(&quot;songlength: &quot;,tostring(GetEnv(&quot;SongPercentComplete&quot;)))
+
+		Trace(&quot;pixscale: &quot;,tostring(pixscale))
+
+		--get data
+		local gd=CurGhostData[pn] or {}
+		local graphs={} for j=1,9 do graphs[j]={} for c=1,numgraphcols do graphs[j][c]=false end end
+
+		--parse data
+		local ceil=math.ceil
+		if gd then for i,step in next,gd,nil do graphs[step[2]][ceil((step[1]-firstnotetime)*pixscale)]=true end end
+
+		--fill the graphs
+		for j=1,6 do
+			local g=r[j].self
+			g:visible(Bool[j==6 or Metrics.Evaluation.NumJudgeRows&gt;j])
+
+			local jr,jg,jb,_=unpack(JudgeColours[j])
+
+			g:y((math.min(Metrics.Evaluation.NumJudgeRows,j)-Metrics.Evaluation.NumJudgeRows/2)*sliceheight)
+			g:basezoomx(slicewidth)
+
+			for c=1,numgraphcols do
+				local q=r[j].children[c]
+				
+				q:visible(Bool[graphs[j][c]])
+
+				--format them
+				q:zoomtoheight(sliceheight)
+				q:x(c-numgraphcols/slicewidth)
+				q:diffuse(jr,jg,jb,0.7)
+			end
+		end
+		
+		--todo: Hitmine graph as well?
+
+		--tween in:
+
+		Actor.xy(s,Metrics.Evaluation.LifeGraphX[pn],Metrics.Evaluation.LifeGraphY)
+		Sweep.In(s,pn)
+	
+	end"
+	OffCommand="%function(s) Sweep.Out(s,s:getaux()) end"
+	CaptureCommand="%Capture.ActorFrame.CaptureInternal"><children>
+	<Layer File="luagraph"/>
+	<Layer File="luagraph"/>
+	<Layer File="luagraph"/>
+	<Layer File="luagraph"/>
+	<Layer File="luagraph"/>
+	<Layer File="luagraph"/>
+</children></ActorFrame>

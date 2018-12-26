@@ -1,0 +1,9 @@
+<ActorFrame
+	OnCommand="%Screens.NewModsMenu.PlayerPane.On"
+	CaptureCommand="%Capture.ActorFrame.CaptureInternal"
+	OffCommand="%Screens.NewModsMenu.PlayerPane.Off"
+><children>
+	<Layer Type="Quad"/> <!-- don't put <Quad/> -->
+	<Layer File="body"/>
+	<Layer File="footer"/>
+</children></ActorFrame>

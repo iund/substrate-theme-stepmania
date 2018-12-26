@@ -1,0 +1,3 @@
+[Actor]
+Type=Quad
+InitCommand=zoomto,unpack(Metrics.SelectMusic.BannerFrameSize)

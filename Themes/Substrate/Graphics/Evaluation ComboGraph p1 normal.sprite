@@ -1,0 +1,3 @@
+[Sprite]
+Texture=Evaluation ComboGraph normal
+InitCommand=%Tweens.Evaluation.ComboGraph.NormalPartOn

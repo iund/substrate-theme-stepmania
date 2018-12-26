@@ -1,0 +1,4 @@
+[Sprite]
+Texture=MusicWheelItem _expanded
+#UpdateCommand=%Capture.MusicWheel.Sprites.ExpandedPoll
+UpdateCommand=%function(s) local i=s:getaux() if mwState and mwTexts and mwState.CurFolderItem~=i then mwState.CurFolderItem=i mwState.CurFolder=mwTexts[i].Folder:GetText() if not CurSong() then ForeachPlayer(Capture.MusicWheel.SetAllMeterText) end end end

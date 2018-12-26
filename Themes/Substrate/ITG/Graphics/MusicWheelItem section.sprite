@@ -1,0 +1,4 @@
+[Sprite]
+Texture=MusicWheelItem _section
+#UpdateCommand=%Capture.MusicWheel.Sprites.SectionPoll
+UpdateCommand=%function(s) local i=s:getaux() if mwState and mwTexts and mwState.CurFolderItem==i and mwState.CurFolder==mwTexts[i].Folder:GetText() then mwState.CurFolderItem=0 end end

@@ -1,0 +1,8 @@
+# TODO: Must be a better way.
+
+[Actor]
+Type=Quad
+OnCommand=zoomto,3,10
+JudgmentP1MessageCommand=%function(s) if s:getaux()==1 then s:playcommand("Judgment") end end
+JudgmentP2MessageCommand=%function(s) if s:getaux()==2 then s:playcommand("Judgment") end end
+JudgmentCommand=%function(s) local pn=s:getaux() if judge and judge[pn] then local offset=judge[pn].self:GetNoteOffset() local edge=GetPref("JudgeWindowSecondsGreat")+GetPref("JudgeWindowAdd")*GetPref("JudgeWindowScale") s:finishtweening() s:x(clamp(offset,-edge,edge)*1000) s:diffusealpha(1) s:sleep(0.5) s:linear(0.2) s:diffusealpha(0) end end

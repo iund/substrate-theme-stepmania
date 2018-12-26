@@ -1,0 +1,3 @@
+[Actor]
+Type=Quad
+OnCommand=stretchto,self:getaux()==1 and SCREEN_CENTER_X+32 or SCREEN_CENTER_X-172,SCREEN_CENTER_Y-172,self:getaux()==1 and SCREEN_CENTER_X+320 or SCREEN_CENTER_X-32,SCREEN_CENTER_Y+172;diffuse,0,0,0,.5

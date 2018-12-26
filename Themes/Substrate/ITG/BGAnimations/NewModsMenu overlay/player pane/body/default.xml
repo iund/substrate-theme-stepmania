@@ -1,0 +1,6 @@
+<ActorFrame><children>
+	<Layer File="bg"/>
+	<Layer File="header"/>
+	<Layer File="../../../../Graphics/_options cursor" />
+	<Layer File="cols"/>
+</children></ActorFrame>

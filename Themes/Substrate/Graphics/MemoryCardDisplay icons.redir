@@ -1,0 +1,6 @@
+MemoryCardDisplay sprites
+[Sprite]
+Texture=MemoryCardDisplay sprites
+InitCommand=%MemoryCardDisplay.Init
+OnCommand=%MemoryCardDisplay.IconOn
+UpdateCommand=%MemoryCardDisplay.Poll

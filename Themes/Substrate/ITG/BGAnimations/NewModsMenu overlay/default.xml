@@ -1,0 +1,32 @@
+<ActorFrame
+	MenuLeftP1MessageCommand="%function(s) Screens.NewModsMenu.AutoRepeatInput(1,1,-1) end"
+	MenuRightP1MessageCommand="%function(s) Screens.NewModsMenu.AutoRepeatInput(1,1,1) end"
+	MenuUpP1MessageCommand="%function(s) Screens.NewModsMenu.AutoRepeatInput(1,2,-1) end"
+	MenuDownP1MessageCommand="%function(s) Screens.NewModsMenu.AutoRepeatInput(1,2,1) end"
+	MenuLeftP2MessageCommand="%function(s) Screens.NewModsMenu.AutoRepeatInput(2,1,-1) end"
+	MenuRightP2MessageCommand="%function(s) Screens.NewModsMenu.AutoRepeatInput(2,1,1) end"
+	MenuUpP2MessageCommand="%function(s) Screens.NewModsMenu.AutoRepeatInput(2,2,-1) end"
+	MenuDownP2MessageCommand="%function(s) Screens.NewModsMenu.AutoRepeatInput(2,2,1) end"
+
+	UpdateAllPanesMessageCommand="%Screens.NewModsMenu.UpdateAllPanes"
+
+	InitCommand="%Screens.NewModsMenu.Init"
+	OnCommand="%Screens.NewModsMenu.On"
+	FirstUpdateCommand="%Screens.NewModsMenu.FirstUpdate"
+
+	UpdateCommand="%Screens.NewModsMenu.Update"
+
+	OffCommand="%Screens.NewModsMenu.Off"
+	BranchScreenCommand="%Screens.NewModsMenu.BranchScreen"
+
+><children>
+	<Layer File="player pane" InitCommand="aux,1" />
+	<Layer File="player pane" InitCommand="aux,2" />
+	<Layer
+		Condition="not GetEnv(&quot;ServiceMenu&quot;)"
+		File="../Stage overlay/box"
+		OnCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-(IsCourseMode() and 80 or 0)"
+		TweenAwayStageBoxMessageCommand="%Screens.NewModsMenu.TweenAwayStageBox"
+		TweenBackStageBoxMessageCommand="%Screens.NewModsMenu.TweenBackStageBox"
+	/>
+</children></ActorFrame>

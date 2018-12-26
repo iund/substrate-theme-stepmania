@@ -1,0 +1,6 @@
+<!--col container-->
+<ActorFrame><children>
+	<Layer File="col"/>
+	<Layer File="col"/>
+	<Layer File="col"/>
+</children></ActorFrame>
