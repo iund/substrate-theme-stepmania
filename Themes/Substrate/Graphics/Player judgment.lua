@@ -10,14 +10,16 @@ local tnsindex={
 local jts={x=1.2, y=1.3}
 local basezoom=.75
 
+local pn=lua.GetThreadVariable("Player")
+
 return Def.ActorFrame{ Def.Sprite{ --NOTE: for whatever reason, the judge sprite only works correctly inside an actorframe
 	Texture=THEME:GetPathG("","_Judge Fonts/Default"),
 	InitCommand=cmd(animate,false;diffusealpha,0;aux,self:GetNumStates();basezoom,basezoom),
 	ResetCommand=cmd(finishtweening),
 
-	JudgmentMessageCommand=function(s,p)
+	JudgmentMessageCommand=function(s,p) --NOTE: This message is a broadcast- check the pn
 		local tns=tnsindex[p.TapNoteScore]
-		if not p.HoldNoteScore and tns then
+		if p.Player==pn and not p.HoldNoteScore and tns then
 			--there are 6 or 12 possible (0-indexed) states. even states are early, odd states are late.
 			local numstates=s:getaux()
 

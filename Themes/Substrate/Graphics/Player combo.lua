@@ -50,9 +50,9 @@ local setcombo=function(s,p)
 			colorcancel(combolabel,worstjudge)
 		end
 
-		tween(number,math.min(10,p.Combo)/10,zoombase)
-		tween(combolabel,math.min(10,p.Combo)/10,1)
-
+		local fade=math.min(10,p.Combo)/10
+		tween(number,fade,zoombase)
+		tween(combolabel,fade,1)
 	elseif p.Misses then
 		number:settext(tostring(p.Misses))
 
@@ -62,9 +62,9 @@ local setcombo=function(s,p)
 		colorcancel(number,6)
 		colorcancel(misseslabel,6)
 
-		tween(number,math.min(10,p.Misses)/10,zoombase)
-		tween(combolabel,math.min(10,p.Misses)/10,1)
-
+		local fade=math.min(10,p.Misses)/10
+		tween(number,fade,zoombase)
+		tween(misseslabel,fade,1)
 	else
 		--zero combo, ie on the first song
 		number:settext("")
