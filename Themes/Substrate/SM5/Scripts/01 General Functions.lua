@@ -33,6 +33,8 @@ function string.capitalize(str) return string.upper(string.sub(str,1,1))..string
 -- theme
 function ThemeVersionString() return not THEME_VERSION and "v?" or string.format("v%d.%d%s",THEME_VERSION.MAJOR or 0, THEME_VERSION.MINOR or 0, THEME_VERSION.SUFFIX_STR or "") end
 
+function IsWidescreen() return (SCREEN_HEIGHT/SCREEN_WIDTH)>(4/3) end
+
 -- actors
 function GetDimmedColor(color,dimfactor) local out={} for i=1,3 do out=color[i]*dimfactor end out[4]=color[4] return out end
 

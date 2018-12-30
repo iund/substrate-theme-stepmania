@@ -1,5 +1,6 @@
-local meterxoffset=158
-local clearlampxoffset=176
+
+local meterxoffset=math.round(158*ASPECT_ADJUST_NARROW_FACTOR)
+local clearlampxoffset=math.round(176*ASPECT_ADJUST_NARROW_FACTOR)
 
 local meter=function(pn) --Difficulty meter
 	return Def.BitmapText {
@@ -57,10 +58,11 @@ end
 
 return Def.ActorFrame {
 	Def.Sprite {
-		Texture="MusicWheelItem _song",
+		Texture=THEME:GetPathG("MusicWheelItem","_song"),
 		InitCommand=cmd(
 			diffusecolor,unpack(UIColors["MusicWheelItemSong"]);
-			diffusealpha,CommonPaneDiffuseAlpha)
+			diffusealpha,CommonPaneDiffuseAlpha;
+			basezoomx,ASPECT_ADJUST_NARROW_FACTOR),
 	},
 
 	clearlamp(PLAYER_1),

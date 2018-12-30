@@ -1,3 +1,5 @@
+local screenname=lua.GetThreadVariable("LoadingScreen")
+
 local songboxspacingy=64
 local songboxspacingx=120
 
@@ -11,24 +13,6 @@ end
 
 local out=Def.ActorFrame {
 	OnCommand=cmd(SetUpdateFunction,updatetime),
-	LoadActor(THEME:GetPathB(THEME:GetMetric("Evaluation","Fallback"),"overlay"))..{
-		InitCommand=cmd(aux,-1),
-		OnCommand=function(s) Sweep.InCenter(s,-1) end,
-		OffCommand=function(s) Sweep.OutCenter(s,-1) end,
-	},
-
---Top info
-	Def.BitmapText {
-		Font="_common white",
-		OnCommand=cmd(shadowlength,0;x,SCREEN_WIDTH*.25;y,SCREEN_TOP+12;zoom,.75),
-		Text=GetPref("MachineName"),
-	},
-
-	Def.BitmapText { --TODO working clock?
-		Font="_common white",
-		InitCommand=function(s) timetext=s end,
-		OnCommand=cmd(shadowlength,0;x,SCREEN_WIDTH*.75;y,SCREEN_TOP+12;zoom,.75),
-	},
 
 --Song box
 	Def.ActorFrame {
@@ -38,7 +22,7 @@ local out=Def.ActorFrame {
 		OffCommand=function(s) Sweep.OutCenter(s,-1) end,
 
 		Def.Sprite {
-			Texture=THEME:GetPathG("Evaluation","banner frame"),
+			Texture=THEME:GetPathG(screenname,"banner frame"),
 			InitCommand=cmd(diffusealpha,CommonPaneDiffuseAlpha)
 		},
 		Def.Sprite {
@@ -117,15 +101,27 @@ ForeachEnabledPlayer(function(pn)
 	local statslabelalign=pi==1 and "right" or "left"
 	local judgelabelalign=pi==1 and "left" or "right"
 
-	local judgelabelx=-40*side
-	local judgevaluex=-168*side
+	local judgelabelx=-40*side*ASPECT_ADJUST_NARROW_FACTOR
+	local judgevaluex=-168*side*ASPECT_ADJUST_NARROW_FACTOR
 	local judgey=-84
 	local judgeyspacing=24
 
-	local statslabelx=80*side
-	local statsvaluex=24*side
+	local statslabelx=80*side*ASPECT_ADJUST_NARROW_FACTOR
+	local statsvaluex=24*side*ASPECT_ADJUST_NARROW_FACTOR
 	local statsy=-84
 	local statsyspacing=24
+
+	local meterx=168*side*ASPECT_ADJUST_NARROW_FACTOR
+	local metery=-96
+
+	local charttagx=-16*side*ASPECT_ADJUST_NARROW_FACTOR
+	local charttagy=-116
+
+	local modsx=0
+	local modsy=44
+
+	local graphx=0
+	local graphy=92
 
 	local function judge(tns) return pss:GetTapNoteScores(tns) end
 
@@ -136,14 +132,14 @@ ForeachEnabledPlayer(function(pn)
 	end
 
 	out[l+1]=Def.ActorFrame{
-		InitCommand=cmd(x,SCREEN_CENTER_X+side*panexoffset;y,paney),
+		InitCommand=cmd(x,SCREEN_CENTER_X+side*panexoffset*ASPECT_ADJUST_NARROW_FACTOR;y,paney),
 		OnCommand=function(s) Sweep.In(s,pi) end,
 		OffCommand=function(s) Sweep.Out(s,pi) end,
 
 		Def.Sprite {
-			Texture="../Evaluation underlay/pane p"..pi,
+			Texture="pane p"..pi,
 			InitCommand=function(s) ApplyUIColor(s,pn) end,
-			OnCommand=cmd(diffusealpha,CommonPaneDiffuseAlpha)
+			OnCommand=cmd(diffusealpha,CommonPaneDiffuseAlpha;basezoomx,ASPECT_ADJUST_NARROW_FACTOR)
 		},
 				
 	--Judge Labels
@@ -256,28 +252,30 @@ ForeachEnabledPlayer(function(pn)
 
 		--meter
 		Def.BitmapText {
-			OnCommand=cmd(x,168*side;y,-96;zoom,2;diffusecolor,DifficultyColors[GetCurSteps(pn):GetDifficulty()]),
+			OnCommand=cmd(x,meterx;y,metery;zoom,2;diffusecolor,DifficultyColors[
+				(not IsCourseMode() and GetCurSteps(pn) or IsCourseMode() and GetCurTrail(pn)
+					):GetDifficulty()]),
 			Text=GetCurSteps(pn):GetMeter(),
 			Font="_common white",
 		},
 
 		--chart tag
 		Def.BitmapText {
-			OnCommand=cmd(x,-16*side;y,-116;zoom,.75),
+			OnCommand=cmd(x,charttagx;y,charttagy;zoom,.75),
 			Text=GetCurSteps(pn):GetChartName(),
 			Font="_common semibold black",
 		},
 
 		--mods list
 		Def.BitmapText {
-			OnCommand=cmd(y,44;zoom,.75),
+			OnCommand=cmd(x,modsx;y,modsy;zoom,.75),
 			Text=GAMESTATE:GetPlayerState(pn):GetPlayerOptionsString("ModsLevel_Preferred"),
 			Font="_common white",
 		},
 
 		--combined life/combo graph. works the same as in 3.95
 		Def.ActorFrame {
-			InitCommand=cmd(y,92),
+			InitCommand=cmd(x,graphx;y,graphy),
 			Def.GraphDisplay {
 				OnCommand=cmd(Load,"LifeGraph";Set,STATSMAN:GetCurStageStats(),pss;RunCommandsOnChildren,function(c) c:zbias(1) c:zbuffer(true) end),
 			},
@@ -291,14 +289,34 @@ ForeachEnabledPlayer(function(pn)
 		--TODO- Scatter graph? using ActorMultiVertex?
 	}
 
-	--Camera flash.
-	out[l+2]=Def.Quad {
+--[[ cameraflash TODO
+		out[l+2]=Def.Quad {
 		["P"..PlayerIndex[pn].."SelectPressInputMessageCommand"]=cmd(finishtweening;diffusealpha,self:getaux();decelerate,0.5;diffusealpha,0;aux,0),
 		Command=cmd(stretchtoscreen;diffuse,.8,.8,.8,0;aux,PROFILEMAN:IsPersistentProfile(pn) and 1 or 0),
 	}
-	
+--]]
+
 end)
 
-return out
+return Def.ActorFrame{
+	LoadActor(THEME:GetPathB(THEME:GetMetric("Evaluation","Fallback"),"overlay"))..{
+		InitCommand=cmd(aux,-1),
+		OnCommand=function(s) Sweep.InCenter(s,-1) end,
+		OffCommand=function(s) Sweep.OutCenter(s,-1) end,
+	},
+	--Top info
+	Def.BitmapText {
+		Font="_common white",
+		OnCommand=cmd(shadowlength,0;x,SCREEN_WIDTH*.25;y,SCREEN_TOP+12;zoom,.75),
+		Text=GetPref("MachineName"),
+	},
 
+	Def.BitmapText { --TODO working clock?
+		Font="_common white",
+		InitCommand=function(s) timetext=s end,
+		OnCommand=cmd(shadowlength,0;x,SCREEN_WIDTH*.75;y,SCREEN_TOP+12;zoom,.75),
+	},
+
+	out
+}
 

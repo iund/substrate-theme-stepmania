@@ -6,18 +6,15 @@ function GetScreen() return SCREENMAN:GetTopScreen() end
 
 function Sprite:stretchtoscreen() self:stretchto(SCREEN_LEFT,SCREEN_TOP,SCREEN_RIGHT,SCREEN_BOTTOM) end
 
+function ActorFrame:FitToAspect()
+	self:zoomx((SCREEN_WIDTH/SCREEN_HEIGHT)/(16/9))
+	self:addx((426-SCREEN_CENTER_X)/(SCREEN_WIDTH/SCREEN_HEIGHT))
+end
 --run this via SetUpdateCommand. this is used in a few places so putting here to avoid pasting
 function Actor:UpdateDiffuseCos(bias) self:diffusealpha(math.abs(math.cos(self:GetSecsIntoEffect()*math.pi))*bias+bias) end
 function Actor:UpdateDiffuseSin(bias) self:diffusealpha(math.abs(math.sin(self:GetSecsIntoEffect()*math.pi))*bias+bias) end
 
 function ActorFrame:ApplyAuxToChildren(val) local aux=val or self:getaux() self:RunCommandsOnChildren(function(child) child:aux(aux) end) end
-
--- Musicwheel.
-
-function WheelItemOn(s) end
-function WheelItemFolderTextOn(s) s:zoom(.75) end
-function WheelItemEntryTextOn(s) s:zoom(.75) end
-function WheelItemSpecialTextOn(s) s:zoom(.75) end
 
 -- UI
 function ApplyUIColor(s,pn) s:diffusecolor(PlayerColors[GAMESTATE:Env().PlayerState[pn].UIColor]) end
@@ -57,3 +54,4 @@ function PlayerX(pn)
 		or pn==2 and SCREEN_CENTER_X+(SCREEN_WIDTH/4))
 	return ret
 end
+

@@ -1,5 +1,19 @@
+local screenname=lua.GetThreadVariable("LoadingScreen")
+
 return Def.ActorFrame {
-	InitCommand=cmd(x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y),
+--	InitCommand=cmd(x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y),
+
+	--Wheel mask
+	Def.Quad {
+		InitCommand=function(s)
+			s:x(THEME:GetMetric(screenname,"MusicWheelX"))
+			s:y(THEME:GetMetric(screenname,"MusicWheelY"))
+			s:zoomto(352,24*(THEME:GetMetric(THEME:GetMetric(screenname,"MusicWheelType"),"NumWheelItems")-2))
+			s:clearzbuffer(true)
+			s:blend("noeffect") s:zwrite(true)
+		end,
+	},
+	
 --[[
 		LoadActor("center frame")..{
 		OnCommand=function(s)

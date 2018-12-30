@@ -136,7 +136,10 @@ local entrybox=function(pn)
 	-----
 
 	return Def.ActorFrame{
-		InitCommand=cmd(xy,SCREEN_CENTER_X+256*(PlayerIndex[pn]*2-3),SCREEN_CENTER_Y+168),
+		--InitCommand=cmd(xy,SCREEN_CENTER_X+256*(PlayerIndex[pn]*2-3),
+		InitCommand=cmd(xy,SCREEN_CENTER_X+(SCREEN_WIDTH/4)*(PlayerIndex[pn]*2-3),
+		
+		SCREEN_CENTER_Y+168),
 
 	--out of ranking
 		Def.ActorFrame{

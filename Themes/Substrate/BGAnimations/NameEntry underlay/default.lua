@@ -1,8 +1,11 @@
+local screenname=lua.GetThreadVariable("LoadingScreen")
+
+--TODO pull metrics form metrics.ini
 
 local metrics={
 	rowheight=112,
 	numfeatsshown=3,
-	autonudgeinterval=4,
+	autonudgeinterval=THEME:GetMetric(screenname,"AutoNudgeIntervalSeconds"),
 	topy=16
 }
 
@@ -66,7 +69,7 @@ local nudge=function(dir)
 end
 
 scroller=Def.ActorFrame{
-	InitCommand=cmd(ztestmode,"writeonfail"),
+	InitCommand=cmd(ztestmode,"writeonfail";FitToAspect),
 	OnCommand=cmd(sleep,metrics.autonudgeinterval;queuecommand,"AutoNudgeDown"),
 	NudgeScrollerUpMessageCommand=function(s) didnudge=true nudge(-1) end,
 	NudgeScrollerDownMessageCommand=function(s) didnudge=true nudge(1) end,

@@ -1,8 +1,4 @@
-
---TODO
--- Just set up the input listener and delegate the screen logic to lua.
---ScreenOnCommand=%Screens.PlayerEntry.Init
---ScreenCoinInsertedMessageCommand=%Screens.PlayerEntry.Coin
+local screenname=lua.GetThreadVariable("LoadingScreen")
 
 local env={}
 
@@ -75,7 +71,7 @@ input=function(attr)
 end
 
 local out=Def.ActorFrame {
-	LoadActor(THEME:GetPathB(THEME:GetMetric("PlayerEntry","Fallback"),"overlay")),
+	LoadActor(THEME:GetPathB(THEME:GetMetric(screenname,"Fallback"),"overlay")),
 
 	OnCommand=function(s)
 		GetScreen():AddInputCallback(input)
@@ -98,7 +94,7 @@ local out=Def.ActorFrame {
 	end,
 
 	MoveSelectionMessageCommand=function(s)
-		SOUND:PlayOnce(THEME:GetPathS("Options","change"))
+		SOUND:PlayOnce(THEME:GetPathS(screenname,"change"))
 	end
 
 }

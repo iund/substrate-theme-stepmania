@@ -6,6 +6,7 @@ TitleMenuEntries = function() return
 --		{ Name="Profiles", Screen="Profiles" },
 		{ Name="Test Inputs", Screen="TestInput" },
 		{ Name="Map Inputs", Screen="Remap" },
+		{ Name="Test Lights", Screen="TestLights" },
 --		{ Name="Edit", Screen="EditMenu" },
 		{ Name="Options", Screen="ServiceMenu" },
 	}

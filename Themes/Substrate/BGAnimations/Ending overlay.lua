@@ -4,7 +4,7 @@ ForeachEnabledPlayer(function(p)
 	local pn=PlayerIndex[p]
 
 	out[#out+1]=Def.ActorFrame{
-		InitCommand=cmd(x,SCREEN_CENTER_X+256*(pn*2-3);y,SCREEN_CENTER_Y+168),
+		InitCommand=cmd(x,SCREEN_CENTER_X+(SCREEN_WIDTH/4)*(pn*2-3);y,SCREEN_CENTER_Y+168),
 
 		Def.Sprite{
 			Texture="_global overlay/playerbox/box",

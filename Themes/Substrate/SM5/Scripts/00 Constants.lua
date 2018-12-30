@@ -1,7 +1,6 @@
 -- constants
 Bool={[false]=false, [true]=true}
 
-
 PlayerIndex={[PLAYER_1]=1,[PLAYER_2]=2, [1]=PLAYER_1,[2]=PLAYER_2} --use to convert both ways
 
 DifficultyIndex={
@@ -15,6 +14,10 @@ DifficultyIndex={
 }
 
 CommonPaneDiffuseAlpha=0.8
+
+-- 4:3 scaling factors:
+ASPECT_ADJUST_NARROW_FACTOR=SCREEN_WIDTH/(SCREEN_HEIGHT*(16/9)) --1 for 16:9, 0.75 for 4:3
+ASPECT_ADJUST_WIDE_FACTOR=(SCREEN_HEIGHT*(4/3))/SCREEN_WIDTH   --1 for 4:3, 1.5 for 16:9
 
 -- 0-5 = beginner-challenge, -1 = invalid
 	DifficultyColors = {
@@ -136,29 +139,3 @@ CommonPaneDiffuseAlpha=0.8
 		Options={0.5,1.0,0.5,1.0},
 		Evaluation={1.0,0.5,0.5,1.0},
 	}
-
-function GetSwatches()
---Desaturated colours matching the brightness of the corresponding grey areas?
---[[
-	Possible swatches:
-
-	name		r,g,b
-	-----		-----
-	purple	1,0,.5
-	pink		1,0,1
-	blue		.5,.5,1
-	teal		0,.5,1
-	green		0,1,0 (do light orange/'gold'?)
-	yellow	1,1,0
-	orange	1,.5,0
-	red		1,0,0
-	brown		1,.5,.25 (or dark beige/chocolate brown?)
-	grey		.5,.5,.5
-
-	+ room for another 5 (15 swatches total + random)
-
-]]
-end
-
---TODO2: What about the middle pane? Should that be coloured too?
-

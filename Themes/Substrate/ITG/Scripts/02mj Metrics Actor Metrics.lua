@@ -659,16 +659,18 @@
 			GameOverBoxY=SCREEN_CENTER_Y+168
 		},
 		Ranking={
-			PageXY={SCREEN_CENTER_X,SCREEN_CENTER_Y-8},
-			HeadingY=SCREEN_CENTER_Y-184,
-			StepsTypeX=SCREEN_CENTER_X-204,
+			PageXY={SCREEN_CENTER_X,SCREEN_CENTER_Y},
+			ScrollerXY={SCREEN_CENTER_X,SCREEN_CENTER_Y+8},
+			HeadingY=SCREEN_CENTER_Y-200,
+			StepsTypeX=SCREEN_CENTER_X-168,
 			Rows={
-				TitleX=-204,
-				ColsLeft=8,
-				ColsRight=308,
-				RowHeight=64
+				TitleX=-168,
+				ColsLeft=16,
+				ColsRight=256,
+				RowHeight=46
 			},
 			NumEntriesMax=15,
+			ScrollerRows=8,
 			ScrollSpeed=32/60, --seconds per row
 		},
 		EditMenu={

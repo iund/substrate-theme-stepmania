@@ -251,12 +251,13 @@ Branch={
 	
 --Evaluation
 	EvaluationSuffix=function()
-		Env().ResultsMusic=Env().ResultsMusic or clamp(math.ceil(math.random()*4),1,4)
-		return not GetSysConfig().MenuMusic and "" or not OnePassed() and "Failed" or OneQuad() and "Quad" or tostring(Env().ResultsMusic)
+		local i=clamp(math.ceil(math.random()*4),1,4)
+		return not GetSysConfig().MenuMusic and "" or
+			not OnePassed() and "Failed"
+			or tostring(i)..(OneQuad() and "Quad" or "Pass")
 	end,
 
 	Evaluation=function()
-		Env().ResultsMusic=clamp(math.ceil(math.random()*4),1,4)
 		return IsNetConnected() and "NetEvaluation" or (
 			GetEnv("WorkoutMode") and "EvaluationWorkout" --"NameEntry" --Branch.SummaryNext() --"EvaluationWorkout"
 			or GetEnv("SuperMarathon") and "EvaluationSuperMarathon"

@@ -1,4 +1,4 @@
-return Def.Sprite {
+return Def.Quad {
 --	Texture=GetCurSong():GetBackgroundPath(),
-	InitCommand=cmd(stretchtoscreen)
+	InitCommand=cmd(visible,false)
 }

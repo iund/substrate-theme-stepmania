@@ -1,11 +1,19 @@
 Branch={}
 Branch={
-	Start=function() return
+	Start=function()
+		--detect various features we need and bail out if we don't have them:
+		--If the executable doesn't provide these, we will softlock on several screens
+		if not (ScreenManager.set_input_redirected and Screen.AddInputCallback)
+		then
+			return "BootWrongVersion"
+		end
+		
+		
+		return
 		(GAMESTATE:GetCoinMode()=="CoinMode_Home" or
 		GAMESTATE:GetCoinMode()=="CoinMode_Pay" and GAMESTATE:EnoughCreditsToJoin())
-		
-		and Branch.Title()
-		or Branch.FirstAttract()
+			and Branch.Title()
+			or Branch.FirstAttract()
 	end,
 	FirstAttract=function() return "Logo" end,
 	AttractCancel=function() return Branch.Title() end,
@@ -57,18 +65,16 @@ Branch={
 	GameplayNext=function() return Branch.Evaluation() end, --savesync is handled by the game
 
 	EvaluationSuffix=function()
-		GAMESTATE:Env().ResultsMusic=GAMESTATE:Env().ResultsMusic or clamp(math.ceil(math.random()*4),1,4)
+		local i=clamp(math.ceil(math.random()*4),1,4)
 		return 
 			not STATSMAN:GetCurStageStats():OnePassed() and "Failed"
-			or 
-				(GAMESTATE:IsPlayerEnabled(PLAYER_1) and STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetPercentDancePoints()==1
+			or tostring(i)..
+				((GAMESTATE:IsPlayerEnabled(PLAYER_1) and STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetPercentDancePoints()==1
 				or GAMESTATE:IsPlayerEnabled(PLAYER_2) and STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetPercentDancePoints()==1)
-				and "Quad"
-			or tostring(GAMESTATE:Env().ResultsMusic)
+				and "Quad" or "Pass")
 	end,
 
 	Evaluation=function()
-		GAMESTATE:Env().ResultsMusic=clamp(math.ceil(math.random()*4),1,4)
 		return (IsCourseMode() and "EvaluationCourse"
 			or "EvaluationStage"
 		)..Branch.EvaluationSuffix()
